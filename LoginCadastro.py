@@ -3,6 +3,7 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 
+
 def criar_tabela_usuarios():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -10,9 +11,8 @@ def criar_tabela_usuarios():
                  (nome TEXT, email TEXT, telefone TEXT, senha TEXT)''')
     conn.commit()
     conn.close()
-
     
-# Função para criar a tabela de produtos no banco de dados
+    
 def criar_tabela_produtos():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
