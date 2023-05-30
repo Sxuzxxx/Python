@@ -11,8 +11,8 @@ def criar_tabela_usuarios():
                  (nome TEXT, email TEXT, telefone TEXT, senha TEXT)''')
     conn.commit()
     conn.close()
-    
-    
+
+
 def criar_tabela_produtos():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -89,27 +89,29 @@ def editar_produto():
         messagebox.showinfo("Sucesso", "Produto atualizado com sucesso.")
         edicao_janela.destroy()
 
-    
     edicao_janela = tk.Toplevel(window)
     edicao_janela.title("Editar Produto")
     edicao_janela.geometry("300x300")
     edicao_janela.resizable(height=False, width=False)
-    
+
+    nome_janela_produto_label = tk.Label(edicao_janela, text="Interface de Edição de Produtos", font="Arial, 12")
+    nome_janela_produto_label.pack()
+
     novo_nome_label = tk.Label(edicao_janela, text="Novo Nome:")
     novo_nome_label.pack()
     novo_nome_entry = tk.Entry(edicao_janela)
     novo_nome_entry.pack()
-    
+
     nova_quantidade_label = tk.Label(edicao_janela, text="Nova Quantidade:")
     nova_quantidade_label.pack()
     nova_quantidade_entry = tk.Entry(edicao_janela)
     nova_quantidade_entry.pack()
-    
+
     nova_marca_label = tk.Label(edicao_janela, text="Nova Marca:")
     nova_marca_label.pack()
     nova_marca_entry = tk.Entry(edicao_janela)
     nova_marca_entry.pack()
-    
+
     salvar_button = tk.Button(edicao_janela, text="Salvar", command=salvar_edicao)
     salvar_button.pack()
 
@@ -128,8 +130,6 @@ def fazer_login():
         tela_login.pack_forget()
         tela_produtos.pack()
 
-       
-
     else:
         mensagem_login.set("Credenciais inválidas")
 
@@ -138,7 +138,7 @@ def voltar_login_cadastro():
     tela_cadastro.pack_forget()
     tela_login.pack()
 
-
+    
 def exibir_tela_cadastro():
     tela_login.pack_forget()
     tela_cadastro.pack()
@@ -157,11 +157,17 @@ criar_tabela_usuarios()
 criar_tabela_produtos()
 
 window = tk.Tk()
-window.title("Sistema de Login")
+window.title("Sistema de Login e Cadastro de Produtos")
 window.geometry("400x300")
 window.resizable(height=False, width=False)
 
+icone_path = r"C:\Users\User\Desktop\olho.ico"
+window.iconbitmap(icone_path)
+
 tela_login = tk.Frame(window)
+
+login_name_label = tk.Label(tela_login, text="Interface de Login", font="Arial, 20")
+login_name_label.pack()
 
 login_email_label = tk.Label(tela_login, text="Email:")
 login_email_label.pack()
@@ -185,8 +191,10 @@ cadastro_button.pack()
 
 tela_login.pack()
 
-
 tela_cadastro = tk.Frame(window)
+
+cadastro_name_label = tk.Label(tela_cadastro, text="Interface de Cadastro", font="Arial, 20")
+cadastro_name_label.pack()
 
 nome_label = tk.Label(tela_cadastro, text="Nome:")
 nome_label.pack()
@@ -218,8 +226,10 @@ cadastrar_usuario_button.pack()
 voltar_button_cadastro = tk.Button(tela_cadastro, text="Voltar para o Login", command=voltar_login_cadastro)
 voltar_button_cadastro.pack()
 
-
 tela_produtos = tk.Frame(window)
+
+produtos_name_cadastro_label = tk.Label(tela_produtos, text="Interface de Cadastro de Produtos", font="Arial, 15")
+produtos_name_cadastro_label.pack()
 
 produto_nome_label = tk.Label(tela_produtos, text="Nome do Produto:")
 produto_nome_label.pack()
