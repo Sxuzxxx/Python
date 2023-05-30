@@ -3,8 +3,6 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 
-
-# Função para criar a tabela de usuários no banco de dados
 def criar_tabela_usuarios():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -13,7 +11,7 @@ def criar_tabela_usuarios():
     conn.commit()
     conn.close()
 
-
+    
 # Função para criar a tabela de produtos no banco de dados
 def criar_tabela_produtos():
     conn = sqlite3.connect('database.db')
@@ -24,7 +22,6 @@ def criar_tabela_produtos():
     conn.close()
 
 
-# Função para cadastrar um usuário no banco de dados
 def cadastrar_usuario():
     nome = nome_entry.get()
     email = email_entry.get()
@@ -92,34 +89,31 @@ def editar_produto():
         messagebox.showinfo("Sucesso", "Produto atualizado com sucesso.")
         edicao_janela.destroy()
 
-    # Criar a janela de edição do produto
+    
     edicao_janela = tk.Toplevel(window)
     edicao_janela.title("Editar Produto")
     edicao_janela.geometry("300x300")
     edicao_janela.resizable(height=False, width=False)
-
-    # Criar os campos de entrada para a edição
+    
     novo_nome_label = tk.Label(edicao_janela, text="Novo Nome:")
     novo_nome_label.pack()
     novo_nome_entry = tk.Entry(edicao_janela)
     novo_nome_entry.pack()
-
+    
     nova_quantidade_label = tk.Label(edicao_janela, text="Nova Quantidade:")
     nova_quantidade_label.pack()
     nova_quantidade_entry = tk.Entry(edicao_janela)
     nova_quantidade_entry.pack()
-
+    
     nova_marca_label = tk.Label(edicao_janela, text="Nova Marca:")
     nova_marca_label.pack()
     nova_marca_entry = tk.Entry(edicao_janela)
     nova_marca_entry.pack()
-
-    # Botão para salvar as alterações
+    
     salvar_button = tk.Button(edicao_janela, text="Salvar", command=salvar_edicao)
     salvar_button.pack()
 
 
-# Função para fazer o login
 def fazer_login():
     email = login_email_entry.get()
     senha = login_senha_entry.get()
@@ -134,42 +128,39 @@ def fazer_login():
         tela_login.pack_forget()
         tela_produtos.pack()
 
-        # Aqui você pode adicionar a lógica para exibir os produtos
+       
 
     else:
         mensagem_login.set("Credenciais inválidas")
 
-# Função para voltar à tela de login na tela de cadastro de usuário
+
 def voltar_login_cadastro():
     tela_cadastro.pack_forget()
     tela_login.pack()
 
-# Função para exibir a tela de cadastro de usuário
+
 def exibir_tela_cadastro():
     tela_login.pack_forget()
     tela_cadastro.pack()
 
-# Função para voltar à tela de login na tela de cadastro de produto
+
 def voltar_login_produtos():
     tela_produtos.pack_forget()
     tela_login.pack()
 
-# Função para exibir a tela de cadastro de produto
+
 def exibir_tela_produtos():
     tela_login.pack_forget()
     tela_produtos.pack()
 
-# Criar tabelas do banco de dados
 criar_tabela_usuarios()
 criar_tabela_produtos()
 
-# Configuração da janela principal
 window = tk.Tk()
 window.title("Sistema de Login")
 window.geometry("400x300")
 window.resizable(height=False, width=False)
 
-# Tela de login
 tela_login = tk.Frame(window)
 
 login_email_label = tk.Label(tela_login, text="Email:")
@@ -194,7 +185,7 @@ cadastro_button.pack()
 
 tela_login.pack()
 
-# Tela de cadastro
+
 tela_cadastro = tk.Frame(window)
 
 nome_label = tk.Label(tela_cadastro, text="Nome:")
@@ -227,7 +218,7 @@ cadastrar_usuario_button.pack()
 voltar_button_cadastro = tk.Button(tela_cadastro, text="Voltar para o Login", command=voltar_login_cadastro)
 voltar_button_cadastro.pack()
 
-# Tela de produtos
+
 tela_produtos = tk.Frame(window)
 
 produto_nome_label = tk.Label(tela_produtos, text="Nome do Produto:")
